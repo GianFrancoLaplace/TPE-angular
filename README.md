@@ -32,5 +32,4 @@ Luego abrir `http://localhost:4200/`.
 
 ## StackBlitz
 
-Proyecto editable en StackBlitz: _[completar con el enlace `/edit/angular-ivy-nn` al importar este
-repositorio en StackBlitz]_
+Proyecto editable en StackBlitz: https://stackblitz.com/github/GianFrancoLaplace/TPE-angular
