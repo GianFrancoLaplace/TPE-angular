@@ -1,0 +1,14 @@
+<section>
+  <h1>Mis favoritos</h1>
+  <p class="subtitle">
+    Libros guardados en esta sesión. Este estado se comparte entre páginas a través de
+    <code>FavoritesService</code>.
+  </p>
+
+  <app-book-list
+    [books]="favorites()"
+    [favoriteIds]="favoriteIds()"
+    emptyMessage="Todavía no agregaste libros a favoritos. Buscalos en la sección Buscar."
+    (toggleFavorite)="onToggleFavorite($event)"
+  />
+</section>

@@ -1,0 +1,31 @@
+<section>
+  <h1>Mis reseñas</h1>
+  <p class="subtitle">
+    CRUD completo (GET, POST, PUT, DELETE) contra
+    <a href="https://jsonplaceholder.typicode.com" target="_blank" rel="noopener">JSONPlaceholder</a>,
+    una API pública de prueba. Los cambios se simulan del lado del servidor pero el flujo es real.
+  </p>
+
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+  <div class="layout">
+    <app-review-form
+      [editingReview]="editingReview()"
+      [saving]="saving()"
+      (save)="onSave($event)"
+      (cancelEdit)="onCancelEdit()"
+    />
+
+    <div class="list-wrapper">
+      <app-review-list
+        [reviews]="reviews()"
+        [loading]="loading()"
+        [deletingId]="deletingId()"
+        (edit)="onEdit($event)"
+        (delete)="onDelete($event)"
+      />
+    </div>
+  </div>
+</section>

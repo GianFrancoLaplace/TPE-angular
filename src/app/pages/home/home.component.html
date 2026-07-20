@@ -1,0 +1,23 @@
+<section>
+  <h1>Buscar libros</h1>
+  <p class="subtitle">
+    Búsqueda en vivo contra la API pública de <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>.
+  </p>
+
+  <app-search-bar (search)="onSearch($event)" />
+
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+  @if (!hasSearched() && !loading()) {
+    <p class="status">Escribí un título o autor para empezar a buscar.</p>
+  } @else {
+    <app-book-list
+      [books]="books()"
+      [loading]="loading()"
+      [favoriteIds]="favoriteIds()"
+      (toggleFavorite)="onToggleFavorite($event)"
+    />
+  }
+</section>

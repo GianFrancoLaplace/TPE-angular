@@ -1,0 +1,23 @@
+<article class="book-card">
+  @if (book.coverUrl) {
+    <img class="cover" [src]="book.coverUrl" [alt]="'Portada de ' + book.title" />
+  } @else {
+    <div class="cover cover--placeholder">Sin portada</div>
+  }
+
+  <div class="info">
+    <h3>{{ book.title }}</h3>
+    <p class="authors">{{ book.authors.join(', ') }}</p>
+    @if (book.firstPublishYear) {
+      <p class="year">Primera publicación: {{ book.firstPublishYear }}</p>
+    }
+
+    <button
+      class="fav-btn"
+      [class.active]="isFavorite"
+      (click)="toggleFavorite.emit(book)"
+    >
+      {{ isFavorite ? '★ En favoritos' : '☆ Agregar a favoritos' }}
+    </button>
+  </div>
+</article>

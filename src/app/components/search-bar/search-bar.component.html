@@ -1,0 +1,10 @@
+<form class="search-bar" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    name="term"
+    placeholder="Buscar por título, autor..."
+    [(ngModel)]="term"
+    autocomplete="off"
+  />
+  <button type="submit">Buscar</button>
+</form>

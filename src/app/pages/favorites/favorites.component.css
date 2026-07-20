@@ -1,0 +1,10 @@
+.subtitle {
+  color: #666;
+  margin-bottom: 1.25rem;
+}
+
+code {
+  background: #eeeeee;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}

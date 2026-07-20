@@ -1,0 +1,15 @@
+@if (loading) {
+  <p class="status">Cargando libros...</p>
+} @else if (books.length === 0) {
+  <p class="status">{{ emptyMessage }}</p>
+} @else {
+  <div class="grid">
+    @for (book of books; track book.id) {
+      <app-book-card
+        [book]="book"
+        [isFavorite]="favoriteIds.has(book.id)"
+        (toggleFavorite)="toggleFavorite.emit($event)"
+      />
+    }
+  </div>
+}

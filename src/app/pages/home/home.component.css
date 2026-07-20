@@ -1,0 +1,18 @@
+.subtitle {
+  color: #666;
+  margin-bottom: 1.25rem;
+}
+
+.status {
+  color: #666;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.error {
+  color: #c62828;
+  background: #ffebee;
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 1rem;
+}

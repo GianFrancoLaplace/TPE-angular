@@ -1,0 +1,50 @@
+<form class="review-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3>{{ editingReview ? 'Editar reseña' : 'Nueva reseña' }}</h3>
+
+  <label>
+    Título del libro
+    <input type="text" formControlName="bookTitle" placeholder="Ej: Cien años de soledad" />
+  </label>
+  @if (bookTitle.invalid && bookTitle.touched) {
+    <p class="field-error">
+      @if (bookTitle.errors?.['required']) {
+        El título es obligatorio.
+      } @else if (bookTitle.errors?.['minlength']) {
+        El título debe tener al menos 2 caracteres.
+      }
+    </p>
+  }
+
+  <label>
+    Calificación (1 a 5)
+    <input type="number" formControlName="rating" min="1" max="5" />
+  </label>
+  @if (rating.invalid && rating.touched) {
+    <p class="field-error">La calificación debe estar entre 1 y 5.</p>
+  }
+
+  <label>
+    Comentario
+    <textarea formControlName="comment" rows="3" placeholder="¿Qué te pareció el libro?"></textarea>
+  </label>
+  @if (comment.invalid && comment.touched) {
+    <p class="field-error">
+      @if (comment.errors?.['required']) {
+        El comentario es obligatorio.
+      } @else if (comment.errors?.['minlength']) {
+        Escribí al menos 10 caracteres.
+      } @else if (comment.errors?.['maxlength']) {
+        Máximo 300 caracteres.
+      }
+    </p>
+  }
+
+  <div class="actions">
+    <button type="submit" [disabled]="form.invalid || saving">
+      {{ saving ? 'Guardando...' : editingReview ? 'Guardar cambios' : 'Publicar reseña' }}
+    </button>
+    @if (editingReview) {
+      <button type="button" class="secondary" (click)="onCancel()">Cancelar</button>
+    }
+  </div>
+</form>

@@ -1,0 +1,27 @@
+@if (loading) {
+  <p class="status">Cargando reseñas...</p>
+} @else if (reviews.length === 0) {
+  <p class="status">Todavía no hay reseñas.</p>
+} @else {
+  <ul class="review-list">
+    @for (review of reviews; track review.id) {
+      <li class="review-item">
+        <div class="review-header">
+          <h4>{{ review.bookTitle }}</h4>
+          <span class="rating">{{ '★'.repeat(review.rating) }}{{ '☆'.repeat(5 - review.rating) }}</span>
+        </div>
+        <p class="comment">{{ review.comment }}</p>
+        <div class="review-actions">
+          <button (click)="edit.emit(review)">Editar</button>
+          <button
+            class="danger"
+            [disabled]="deletingId === review.id"
+            (click)="delete.emit(review)"
+          >
+            {{ deletingId === review.id ? 'Eliminando...' : 'Eliminar' }}
+          </button>
+        </div>
+      </li>
+    }
+  </ul>
+}
