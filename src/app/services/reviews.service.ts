@@ -20,8 +20,7 @@ export class ReviewsService {
 
   create(draft: ReviewDraft): Observable<Review> {
     const payload = this.toPost(draft);
-    // JSONPlaceholder no persiste datos: todo POST devuelve el mismo id (101),
-    // así que asignamos un id local único para poder editar/borrar sin colisiones.
+    // JSONPlaceholder siempre devuelve id 101 en el POST, uso uno propio
     const localId = this.nextLocalId++;
     return this.http
       .post<JsonPlaceholderPost>(this.baseUrl, payload)
@@ -34,8 +33,7 @@ export class ReviewsService {
 
     return this.http.put<JsonPlaceholderPost>(`${this.baseUrl}/${id}`, payload).pipe(
       map(() => updated),
-      // Los ids locales (>= 1000) no existen en el backend simulado, así que
-      // el PUT responde 500; igualmente confirmamos el cambio del lado cliente.
+      // los ids locales tiran 500 en el PUT, igual confirmo el cambio
       catchError(() => of(updated))
     );
   }
@@ -53,8 +51,7 @@ export class ReviewsService {
       id: post.id,
       bookTitle: post.title,
       comment: post.body,
-      // JSONPlaceholder no tiene un campo "rating" real: los posts semilla (1-100)
-      // no lo traen, así que derivamos uno estable a partir del id para poder mostrarlo.
+      // los posts semilla no traen rating, invento uno a partir del id
       rating: post.rating ?? ((post.id - 1) % 5) + 1
     };
   }
